@@ -1,0 +1,115 @@
+<header class="header header1">
+  <div class="header1__logo_container">
+     <i class="fas fa-bars fa-lg header__menu"></i>
+
+         <div class="header1__logo">
+    <a style="height: 100%;" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+      {%- assign image_size = section.settings.logo_width | append: 'x' -%}
+      <img
+        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+        src="{{ section.settings.logo | img_url: image_size }}" loading="lazy" class="header__heading-logo"
+        width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+        alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+      {%- else -%}
+      {{ shop.name }}
+      {%- endif -%}
+    </a>
+  </div>
+  </div>
+  <ul class="header1__nav-links">
+   {%- if section.settings.menu != blank -%}
+   {%- for link in section.settings.menu.links -%}
+   {%- if link.links == blank -%}
+
+      <li class="header1__nav-link">
+         <a href="{{ link.url }}">{{ link.title | escape }}</a>
+      </li>
+   {%- else -%}
+
+   <li class="header1__nav-link">
+     <a href="{{ link.url }}">
+         {{ link.title | escape }}
+        <i class="fas fa-chevron-down"></i>
+      </a>
+        <ul class="nav-link__sub-links">
+         {%- for childlink in link.links -%}
+          <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+         {%- endfor -%}
+        </ul> 
+   </li>
+   {%- endif -%}
+   {%- endfor -%}
+   {%- endif %}
+
+</ul>
+
+  <div class="header1__icons">
+     <a href="#" class=""><i class="fas fa-search fa-lg"></i></a
+        >
+     <a href="/cart" class="cart" style="text-decoration: none"
+        >
+        <i class="fas fa-shopping-cart fa-lg"></i>
+        <div class="cart_counter">1</div>
+     </a
+        >
+     <a href="#" class=""><i class="fas fa-user-circle fa-lg"></i></a>
+  </div>
+</header>
+<script src="{{ 'header.js' | asset_url }}" defer></script>
+
+
+{% schema %}
+{
+"name": "t:sections.header.name",
+"settings": [
+{
+"type": "select",
+"id": "header_type",
+"label": "Type Of Header",
+"options": [
+{
+"value": "header1",
+"label": "Header 1"
+},
+{
+"value": "header2",
+"label": "Header 2"
+},
+{
+"value": "header3",
+"label": "Header 3"
+}
+],
+"default": "header1"
+},
+{
+"type": "image_picker",
+"id": "logo",
+"label": "t:sections.header.settings.logo.label"
+},
+{
+"type": "range",
+"id": "logo_width",
+"min": 50,
+"max": 250,
+"step": 10,
+"default": 100,
+"unit": "t:sections.header.settings.logo_width.unit",
+"label": "t:sections.header.settings.logo_width.label"
+},
+{
+"type": "link_list",
+"id": "menu",
+"default": "main-menu",
+"label": "t:sections.header.settings.menu.label"
+},
+{
+"type": "link_list",
+"id": "menu_two",
+"default": "main-menu",
+"label": "Alternate Menu"
+}
+]
+}
+{% endschema %}
