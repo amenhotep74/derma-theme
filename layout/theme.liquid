@@ -137,10 +137,17 @@
       </button>
 
       <div class="megamenu__megamenu_container">
+          {%- if section.settings.menu != blank -%}
+          {%- for link in section.settings.menu.links -%}
+          {%- if link.links == blank -%}
           <a class="megamenu__megamenu_a">Home</a>
           <a class="megamenu__megamenu_a">Contact</a>
+
+          {%- endif -%}
+          {%- endfor -%}
+          {%- endif %}
       </div>
-    </div>
+    </div> 
     {% comment %} Mega Menu End {% endcomment %}
 
     {% section 'announcement-bar' %}

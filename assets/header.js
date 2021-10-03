@@ -20,3 +20,8 @@ function closeMenu() {
   // Toggle megamenu to hide
   document.querySelector(".megamenu__overlay").style.display = "none";
 }
+
+
+// Dropdown Search
+
+// When search icon is clicked show search overlay 

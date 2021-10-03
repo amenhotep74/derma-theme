@@ -1,8 +1,82 @@
+{% comment %} Mobile Mega Menu {% endcomment %}
+{% comment %} <div class="megamenu__overlay" id="megamenu__overlay" style="display: none;">
+   <button class="megamenu__btn_close">
+     <i class="fas fa-times fa-2x megamenu__times"></i>
+   </button>
+
+   <div class="megamenu__megamenu_container">
+       <a class="megamenu__megamenu_a">Home</a>
+       <a class="megamenu__megamenu_a">Contact</a>
+   </div>
+ </div> {% endcomment %}
+ {% comment %} Mega Menu End {% endcomment %}
+
+ <style>
+   .search-overlay {
+      position: fixed;
+      background: white;
+
+      width: 100%;
+      height: 200px;
+      z-index: 10;
+      top: 0;
+      left: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .search-top-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      width: 100%;
+      margin-top: 2rem;
+   }
+   .search-top-text {
+      margin: 0;
+   }
+   .search-content {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      max-width: 90%;
+   }
+   
+   .search-boxx {
+      border-bottom: 1px solid black;
+      width: 100%;
+   }
+   .search-boxx:hover {
+      border-bottom: 1px solid black;
+   }
+   .search-boxx:focus-visible{
+      border-bottom: 1px solid black !important;
+      box-shadow: none !important;
+   }
+
+ </style>
+
 <header class="header header1">
+
+   <div class="search-overlay">
+      <div class="search-content">
+         <div class="search-top-container">
+            <p class="search-top-text">What are you looking for?</p>
+            <i class="fas fa-times"></i>
+         </div>
+      <input class="search-boxx" placeholder="SEARCH PRODUCTS..."/>
+      
+      </div>
+    </div>
+
   <div class="header1__logo_container">
      <i class="fas fa-bars fa-lg header__menu"></i>
 
-         <div class="header1__logo">
+   <div class="header1__logo">
     <a style="height: 100%;" href="{{ routes.root_url }}">
       {%- if section.settings.logo != blank -%}
       {%- assign image_size = section.settings.logo_width | append: 'x' -%}
